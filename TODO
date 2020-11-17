@@ -1,4 +1,0 @@
- * Permission: every can query, root can write.
- * Allow environment variable overriding the socket path
- * Don't use `all` feature for tokio dependency.
-
