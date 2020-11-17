@@ -10,3 +10,5 @@ name = "mozimd"
 path = "mozimd.rs"
 
 [dependencies]
+mozim = { path = "../lib" }
+tokio = { version = "0.3", features = ["full"] }

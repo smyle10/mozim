@@ -12,9 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// TODO:
-//  * UNIX socket 
+use mozim;
 
-fn main() {
-    println!("Hello, world!");
+#[tokio::main]
+async fn main() {
+    let mut connection = mozim::ipc_connect().await.unwrap();
+    println!(
+        "Got reply {}",
+        mozim::ipc_exec(&mut connection, "ping").await.unwrap(),
+    );
 }

@@ -12,9 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// TODO:
-//  * UNIX socket 
+use mozim;
+use tokio::net::{unix::SocketAddr, UnixStream};
 
-fn main() {
-    println!("Hello, world!");
+#[tokio::main]
+async fn main() {
+    let listener = mozim::ipc_bind().unwrap();
+
+    loop {
+        let (stream, socket_addr) = listener.accept().await.unwrap();
+        process_socket_connection(stream, socket_addr).await;
+    }
+}
+
+async fn process_socket_connection(
+    mut stream: UnixStream,
+    socket_addr: SocketAddr,
+) {
+    println!("got stream connection {:?} from {:?}", stream, socket_addr);
+    let cmd = mozim::ipc_recv(&mut stream).await.unwrap();
+    println!("got command {}", cmd);
+    mozim::ipc_send(&mut stream, "pong").await.unwrap();
 }

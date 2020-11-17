@@ -7,6 +7,9 @@ MOZIMC_EXEC_DEBUG=$(RUST_DEBUG_BIN_DIR)/$(MOZIMC_EXEC)
 $(MOZIMD_EXEC_DEBUG) $(MOZIMC_EXEC_DEBUG):
 	cargo build --all
 
+# Always invoke cargo build for debug
+.PHONY: $(MOZIMD_EXEC_DEBUG) $(MOZIMC_EXEC_DEBUG)
+
 srv: $(MOZIMD_EXEC_DEBUG)
 	sudo $(MOZIMD_EXEC_DEBUG)
 
