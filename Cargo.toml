@@ -1,0 +1,8 @@
+[package]
+name = "mozim"
+version = "0.1.0"
+authors = ["Gris Ge <cnfourt@gmail.com>"]
+edition = "2018"
+description = "DHCP Client Daemon with Well Defined API"
+
+[dependencies]
