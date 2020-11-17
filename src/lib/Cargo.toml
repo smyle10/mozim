@@ -1,0 +1,16 @@
+[package]
+name = "mozim"
+version = "0.0.1"
+authors = ["Gris Ge <fge@redhat.com>"]
+license = "Apache-2.0"
+edition = "2018"
+description = "Rust binding of mozim(DHCP Client)"
+homepage = "https://github.com/nispor/nispor"
+repository = "https://github.com/nispor/nispor"
+keywords = ["network"]
+categories = ["network-programming", "os"]
+
+[lib]
+name = "mozim"
+path = "lib.rs"
+crate-type = ["lib"]

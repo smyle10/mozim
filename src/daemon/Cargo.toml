@@ -1,0 +1,12 @@
+[package]
+name = "mozimd"
+version = "0.1.0"
+authors = ["Gris Ge <fge@redhat.com>"]
+edition = "2018"
+description = "DHCP Client Daemon with Well Defined API"
+
+[[bin]]
+name = "mozimd"
+path = "mozimd.rs"
+
+[dependencies]

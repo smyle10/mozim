@@ -1,0 +1,13 @@
+[package]
+name = "mozimc"
+version = "0.1.0"
+authors = ["Gris Ge <fge@redhat.com>"]
+edition = "2018"
+description = "CLI tool for mozim(DHCP Client)"
+
+[[bin]]
+name = "mozimc"
+path = "mozimc.rs"
+
+[dependencies]
+
