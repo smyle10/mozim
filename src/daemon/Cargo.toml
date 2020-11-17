@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["Gris Ge <fge@redhat.com>"]
 edition = "2018"
 description = "DHCP Client Daemon with Well Defined API"
+license = "Apache-2.0"
 
 [[bin]]
 name = "mozimd"
