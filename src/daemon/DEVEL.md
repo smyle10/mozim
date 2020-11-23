@@ -9,11 +9,11 @@ daemon, the daemon will reply with serialized `MozimResult`.
 TODO: need more detail on the command format:
 
 The command are:
-    * `ping`                -> reply `pong` as `String`
-    * `start <iface_name>`  -> reply `DhcpStatus`
-    * `stop <iface_name>`   -> reply `DhcpStatus`
-    * `query <iface_name>`  -> reply `DhcpStatus`
-    * `dump`                -> reply `Vec<DhcpStatus>`
+ * `ping`                -> reply `pong` as `String`
+ * `start <iface_name>`  -> reply `DhcpStatus`
+ * `stop <iface_name>`   -> reply `DhcpStatus`
+ * `query <iface_name>`  -> reply `DhcpStatus`
+ * `dump`                -> reply `Vec<DhcpStatus>`
 
 ## Thread design
 
