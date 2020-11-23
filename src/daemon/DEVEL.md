@@ -1,3 +1,14 @@
+<!-- vim-markdown-toc GFM -->
+
+* [IPC Design](#ipc-design)
+* [Thread design](#thread-design)
+    * [`MozimThreadsManager`](#mozimthreadsmanager)
+    * [`MozimThreadManager`](#mozimthreadmanager)
+    * [`MozimDhcpManager`](#mozimdhcpmanager)
+    * [`MozimDhcpWorker`](#mozimdhcpworker)
+
+<!-- vim-markdown-toc -->
+
 ## IPC Design
 
 The daemon will use unix stream socket `/tmp/mozim_socket` to communicate with
