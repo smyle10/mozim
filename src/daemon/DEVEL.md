@@ -34,9 +34,11 @@ Providing:
 
 Represent the DHCP task of certain interface in child thread.
 The `MozimDhcpManager` will listen on sync channel, waiting:
-    * `MozimDhcpCmd` from `MozimThreadManager` for command
-    * `MozimDhcpCmd::StateUpdate<DhcpStatus>` from `MozimDhcpWorker` for
-      status update which will be used to reply the `QueryDhcp` command.
+
+ * `MozimDhcpCmd` from `MozimThreadManager` for command
+
+ * `MozimDhcpCmd::StateUpdate<DhcpStatus>` from `MozimDhcpWorker` for
+   status update which will be used to reply the `QueryDhcp` command.
 
 Providing:
  * `run()`
