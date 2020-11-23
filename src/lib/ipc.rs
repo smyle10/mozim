@@ -12,13 +12,39 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use crate::MozimError;
 use std::fs::remove_file;
+
+use serde_derive::{Deserialize, Serialize};
 use tokio::io::AsyncReadExt;
 use tokio::io::AsyncWriteExt;
 use tokio::net::{UnixListener, UnixStream};
 
+use crate::MozimError;
+
 const DEFAULT_SOCKET_PATH: &str = "/tmp/mozim_socket";
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct MozimResult {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub error: Option<MozimError>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub data: Option<String>,
+}
+
+impl MozimResult {
+    pub fn data(s: String) -> Self {
+        MozimResult {
+            error: None,
+            data: Some(s),
+        }
+    }
+    pub fn error(e: MozimError) -> Self {
+        MozimResult {
+            error: Some(e),
+            data: None,
+        }
+    }
+}
 
 pub fn ipc_bind() -> Result<UnixListener, MozimError> {
     remove_file(DEFAULT_SOCKET_PATH).ok();

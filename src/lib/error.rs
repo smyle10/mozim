@@ -12,9 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#[derive(Debug, Clone)]
+use serde_derive::{Deserialize, Serialize};
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+#[serde(rename_all = "snake_case")]
 pub enum ErrorKind {
     IpcError,
+    InvalidIpcCommand,
+    MozimBug,
 }
 
 impl std::fmt::Display for ErrorKind {
@@ -23,10 +28,31 @@ impl std::fmt::Display for ErrorKind {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct MozimError {
     pub kind: ErrorKind,
     pub msg: String,
+}
+
+impl MozimError {
+    pub fn bug(msg: String) -> MozimError {
+        MozimError {
+            kind: ErrorKind::MozimBug,
+            msg: msg,
+        }
+    }
+    pub fn invalid_ipc_command(msg: String) -> MozimError {
+        MozimError {
+            kind: ErrorKind::InvalidIpcCommand,
+            msg: msg,
+        }
+    }
+}
+
+impl std::fmt::Display for MozimError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}: {}", self.kind, self.msg)
+    }
 }
 
 impl std::convert::From<std::io::Error> for MozimError {

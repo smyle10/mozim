@@ -13,3 +13,6 @@ path = "mozimd.rs"
 [dependencies]
 mozim = { path = "../lib" }
 tokio = { version = "0.3", features = ["full"] }
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"

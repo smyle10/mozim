@@ -12,29 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use std::env::args;
+use serde_derive::{Deserialize, Serialize};
 
-use mozim::{ipc_connect, ipc_exec};
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub enum DhcpState {
+    Requesting,
+    Stopped,
+}
 
-#[tokio::main]
-async fn main() {
-    let argv = args().collect::<Vec<String>>();
-    if argv.len() == 1 {
-        eprintln!(
-            r#"Invalid arugment, please use:
- * mozimc ping
- * mozimc start <iface_name>
- * mozimc stop <iface_name>
- * mozimc query <iface_name>
- * mozimc dump
-        "#
-        );
-        std::process::exit(1);
-    }
-    let args = argv[1..].join(" ");
-    let mut connection = ipc_connect().await.unwrap();
-    println!(
-        "Got reply {}",
-        ipc_exec(&mut connection, &args).await.unwrap(),
-    );
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct DhcpStatus {
+    pub iface_name: String,
+    pub state: DhcpState,
 }
