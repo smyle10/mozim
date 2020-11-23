@@ -1,3 +1,20 @@
+## IPC Design
+
+The daemon will use unix stream socket `/tmp/mozim_socket` to communicate with
+CLI or API bindings.
+
+The CLI can use `ipc_connect()` and `ipc_exec()` to execute a command on
+daemon, the daemon will reply with serialized `MozimResult`.
+
+TODO: need more detail on the command format:
+
+The command are:
+    * `ping`                -> reply `pong` as `String`
+    * `start <iface_name>`  -> reply `DhcpStatus`
+    * `stop <iface_name>`   -> reply `DhcpStatus`
+    * `query <iface_name>`  -> reply `DhcpStatus`
+    * `dump`                -> reply `Vec<DhcpStatus>`
+
 ## Thread design
 
  * `threads_manager.rs: MozimThreadsManager`
